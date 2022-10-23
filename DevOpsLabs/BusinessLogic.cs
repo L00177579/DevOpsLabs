@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevOpsLabs
 {
-    internal class Program
+    internal class BusinessLogic
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Test");
-        }
     }
 }
