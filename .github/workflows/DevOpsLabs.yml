@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
   # pull_request:
   #   branches: [ "main" ]
+  workflow_dispatch:
+    
 
 jobs:
   #.NET can be built on ubuntu
@@ -20,6 +22,10 @@ jobs:
       - name: Build .NET Project
         run: dotnet build --configuration Release --no-restore
       - name: Test .NET Project
-        run: dotnet test --verbosity normal --no-restore
-
-      
+        run: dotnet test --verbosity normal --no-restore --logger trx --results-directory "./UnitTestResults/DevOpsLabsUnitTests"
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: DevOpsLabsUnitTestResults
+          path: ./UnitTestResults/DevOpsLabsUnitTests
+        if: ${{ always() }}
