@@ -8,20 +8,18 @@ on:
 
 jobs:
   #.NET can be built on ubuntu
-  uses: ubuntu-latest
-  setupdotnet:
-    name: Install .NET Requirements
-    steps:
-
   dotnetbuild:
-    name: Build the .NET project
+    runs-on: ubuntu-latest
+    name: Install .NET Requirements, build project and test project
     steps:
+      - uses: actions/checkout@v3
+      - name: Install .NET Requirements
+        uses: actions/setup-dotnet@v3
+      - name: Restore nuget packages
+        run: dotnet restore
+      - name: Build .NET Project
+        run: dotnet build --configuration Release --no-restore
+      - name: Test .NET Project
+        run: dotnet test --verbosity normal --no-restore
 
-  dotnettesting:
-    name: Run the .NET unit tests for the project
-    steps:
-
-  dotnetpackaging:
-    name: Set up the .NET project for packaging and pushing to the nuget feed
-    steps:
       
