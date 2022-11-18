@@ -38,6 +38,7 @@ jobs:
         if: $${{ steps.dotnetbuild.outcome == 'success' }}
 
   integrationtests:
+    needs: dotnetbuild
     runs-on: ubuntu-latest
     name: Run integration tests
     steps:
