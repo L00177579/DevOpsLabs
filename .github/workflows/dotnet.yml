@@ -6,3 +6,11 @@ name: .NET
 on:
   pull_request:
     branches: [ "main" ]
+
+jobs:
+  dotnetbuild:
+    name: Build the .NET project
+  dotnettesting:
+    name: Run the .NET unit tests for the project
+  dotnetpackaging:
+    name: Set up the .NET project for packaging and pushing to the nuget feed
