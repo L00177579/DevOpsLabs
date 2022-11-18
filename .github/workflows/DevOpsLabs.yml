@@ -1,4 +1,4 @@
-name: Build CBEDevOpsLabs .NET project
+name: DevOpsLabs.yml
 
 on:
   push:
