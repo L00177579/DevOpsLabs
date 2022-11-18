@@ -29,3 +29,10 @@ jobs:
           name: DevOpsLabsUnitTestResults
           path: ./UnitTestResults/DevOpsLabsUnitTests
         if: ${{ always() }}
+      - name: Upload build output
+        uses: actions/upload-artifact@v3
+        with:
+          name: DevOpsLabsOutput
+          path: ./bin/Release/*
+
+  
