@@ -4,25 +4,5 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET on the build agent
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies for the C# project
-      run: dotnet restore
-    - name: Build C# project
-      run: dotnet build --no-restore
-    - name: Test C# project
-      run: dotnet test --no-build --verbosity normal
