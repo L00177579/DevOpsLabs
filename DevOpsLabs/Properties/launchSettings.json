@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DevOpsLabs": {
+      "commandName": "Project",
+      "commandLineArgs": "mutliply 1 2"
+    }
+  }
+}
