@@ -1,16 +1,27 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build CBEDevOpsLabs .NET project
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
 jobs:
+  #.NET can be built on ubuntu
+  uses: ubuntu-latest
+  setupdotnet:
+    name: Install .NET Requirements
+    steps:
+
   dotnetbuild:
     name: Build the .NET project
+    steps:
+
   dotnettesting:
     name: Run the .NET unit tests for the project
+    steps:
+
   dotnetpackaging:
     name: Set up the .NET project for packaging and pushing to the nuget feed
+    steps:
+      
