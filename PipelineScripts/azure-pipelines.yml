@@ -19,7 +19,7 @@ jobs:
   steps:
     - task: UseDotNet@2
       displayName: Install .NET Requirements
-    - task: DotNetCoreCLI@2#
+    - task: DotNetCoreCLI@2
       displayName: Restore nuget packages
       inputs:
         command: 'restore'
