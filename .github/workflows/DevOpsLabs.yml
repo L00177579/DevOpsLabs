@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore
       - name: Build .NET Project
         id: dotnetbuild
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./**/*.csproj --configuration Release --no-restore
 
       - name: Test .NET Project
         run: dotnet test --verbosity normal --no-restore --logger trx --results-directory "./UnitTestResults/DevOpsLabsUnitTests"
