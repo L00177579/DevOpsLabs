@@ -31,8 +31,9 @@ jobs:
     - task: DotNetCoreCLI@2
       displayName: Test .NET Project
       inputs:
-        command: test 
-        arguments: '--verbosity normal --no-restore --logger trx --results-directory $(Pipeline.Workspace)/UnitTestResults/DevOpsLabsUnitTests'  
+        command: 'test' 
+        publishTestResults: false
+        arguments: '--no-restore --logger trx --results-directory $(Pipeline.Workspace)/UnitTestResults/DevOpsLabsUnitTests'  
     - task: PublishBuildArtifacts@1
       displayName: Upload results
       inputs:
@@ -42,13 +43,13 @@ jobs:
     - task: PublishBuildArtifacts@1
       displayName: Upload build output for DevOpsLabs
       inputs:
-        pathToPublish: $(Pipeline.Workspace)/DevOpsLabs/bin/Release/net6.0/*.*
+        pathToPublish: $(Pipeline.Workspace)/DevOpsLabs/bin/Release/net6.0/
         artifactName: DevOpsLabsOutput
       condition: always()
     - task: PublishBuildArtifacts@1
       displayName: Upload build output for DevOpsLabs API
       inputs:
-        pathToPublish: $(Pipeline.Workspace)/DevOpsLabs.API/bin/Release/net6.0/*.*
+        pathToPublish: $(Pipeline.Workspace)/DevOpsLabs.API/bin/Release/net6.0/
         artifactName: DevOpsLabsAPIOutput
       condition: always()
     
