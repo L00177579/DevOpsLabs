@@ -69,7 +69,11 @@ jobs:
       - name: Deploy DevOpsLabs project
         run: |
           chmod +x ./DeploymentScripts/deployment.sh
-          ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
+          ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsOutput/
+      - name: Deploy DevOpsLabs API project
+        run: |
+          chmod +x ./DeploymentScripts/deployment.sh
+          ./DeploymentScripts/deployment.sh DevOpsLabs.API $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
 
   DevOpsLabsSystemTests:
     needs: DevOpsLabsDeployment
