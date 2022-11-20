@@ -52,4 +52,34 @@ jobs:
         pathToPublish: $(Pipeline.Workspace)/s/DevOpsLabs.API/bin/Release/net6.0/
         artifactName: DevOpsLabsAPIOutput
       condition: always()
-    
+
+- job: DevOpsLabsDeployment
+  displayName: Deploy DevOpsLabs
+  dependsOn: DevOpsLabsBuild
+  steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: Download DevOpsLabs build output
+      inputs:
+        source: 'current'
+        artifact: DevOpsLabsOutput
+        path: ./DevOpsLabsOutput/
+    - task: DownloadPipelineArtifact@2
+      displayName: Download DevOpsLabs build output
+      inputs:
+        source: 'current'
+        artifact: DevOpsLabsAPIOutput
+        path: ./DevOpsLabsAPIOutput/
+    - task: DownloadPipelineArtifact@2
+      displayName: Download DevOpsLabs build output
+      inputs:
+        source: 'current'
+        artifact: DevOpsLabsOutput
+        path: ./DevOpsLabsOutput/
+    - task: Bash@3
+      script: |
+        chmod +x ./DeploymentScripts/deployment.sh
+        ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsOutput/
+    - task: Bash@3
+      script: |
+        chmod +x ./DeploymentScripts/deployment.sh
+        ./DeploymentScripts/deployment.sh DevOpsLabs.API $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
