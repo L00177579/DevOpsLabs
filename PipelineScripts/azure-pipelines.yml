@@ -32,7 +32,7 @@ jobs:
       displayName: Test .NET Project
       inputs:
         command: test 
-        arguments: '--verbosity normal --no-restore --logger trx --results-directory ./UnitTestResults/DevOpsLabsUnitTests'  
+        arguments: '--verbosity normal --no-restore --logger trx --results-directory $(Pipeline.Workspace)/UnitTestResults/DevOpsLabsUnitTests'  
     - task: PublishBuildArtifacts@1
       displayName: Upload results
       inputs:
