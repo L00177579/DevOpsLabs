@@ -33,7 +33,7 @@ jobs:
       inputs:
         command: 'test' 
         publishTestResults: false
-        arguments: '--no-restore --logger trx --results-directory $(Pipeline.Workspace)/UnitTestResults/DevOpsLabsUnitTests'  
+        arguments: '--no-restore --logger trx --results-directory ./UnitTestResults/DevOpsLabsUnitTests'  
     - task: PublishBuildArtifacts@1
       displayName: Upload results
       inputs:
