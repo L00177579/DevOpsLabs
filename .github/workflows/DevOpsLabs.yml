@@ -13,7 +13,7 @@ jobs:
   #.NET can be built on ubuntu
   DevOpsLabsBuild:
     runs-on: ubuntu-latest
-    name: Install .NET Requirements, build, test and package DevOpsLabs project
+    name: Install .NET Requirements, Build, Test and Package DevOpsLabs project
     steps:
       - uses: actions/checkout@v3
 
