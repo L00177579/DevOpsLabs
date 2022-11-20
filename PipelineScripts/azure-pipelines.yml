@@ -90,7 +90,7 @@ jobs:
           chmod +x ./DeploymentScripts/deployment.sh
           ./DeploymentScripts/deployment.sh DevOpsLabs.API $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
 
-- job: DevOpsLabsDeployment
+- job: DevOpsLabsSystemTests
   displayName: Run Test Suite
   dependsOn: DevOpsLabsDeployment
   steps:
