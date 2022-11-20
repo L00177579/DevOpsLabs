@@ -7,6 +7,7 @@ on:
     
 env:
   ENV_TO_DEPLOY: Dev
+  API_ENDPOINT: "http://notarealendpoint.test:7521/"
 
 jobs:
   #.NET can be built on ubuntu
@@ -73,10 +74,10 @@ jobs:
   DevOpsLabsSystemTests:
     needs: DevOpsLabsDeployment
     runs-on: ubuntu-latest
-    name: Run integration tests
+    name: Run Test Suite
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: DevOpsLabsOutput
-          path: .
+      - name: Run newman System Tests against the API
+        run: |
+          chmod +x ./PostmanTestJSON/newman_testing.sh
+          ./PostmanTestJSON/newman_testing.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
