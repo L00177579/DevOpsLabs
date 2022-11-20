@@ -65,6 +65,8 @@ jobs:
         with:
           name: DevOpsLabsAPIOutput
           path: ./DevOpsLabsAPIOutput/
+      - name: Deploy DevOpsLabs project
+        run: ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
 
   DevOpsLabsSystemTests:
     needs: DevOpsLabsDeployment
