@@ -76,14 +76,28 @@ jobs:
         artifact: DevOpsLabsOutput
         path: ./DevOpsLabsOutput/
     - task: Bash@3
+      displayName: Deploy DevOpsLabs project
       inputs:
         targetType: inline
         script: |
           chmod +x ./DeploymentScripts/deployment.sh
           ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsOutput/
     - task: Bash@3
+      displayName: Deploy DevOpsLabs API project
       inputs:
         targetType: inline
         script: |
           chmod +x ./DeploymentScripts/deployment.sh
           ./DeploymentScripts/deployment.sh DevOpsLabs.API $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
+
+- job: DevOpsLabsDeployment
+  displayName: Run Test Suite
+  dependsOn: DevOpsLabsDeployment
+  steps:
+    - task: Bash@3
+      displayName: Run newman System Tests against the API
+      inputs:
+        targetType: inline
+        script: |
+          chmod +x ./PostmanTestJSON/newman_testing.sh
+          ./PostmanTestJSON/newman_testing.sh $API_ENDPOINT
