@@ -76,10 +76,14 @@ jobs:
         artifact: DevOpsLabsOutput
         path: ./DevOpsLabsOutput/
     - task: Bash@3
-      script: |
-        chmod +x ./DeploymentScripts/deployment.sh
-        ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsOutput/
+      inputs:
+        targetType: inline
+        script: |
+          chmod +x ./DeploymentScripts/deployment.sh
+          ./DeploymentScripts/deployment.sh DevOpsLabs $ENV_TO_DEPLOY ./DevOpsLabsOutput/
     - task: Bash@3
-      script: |
-        chmod +x ./DeploymentScripts/deployment.sh
-        ./DeploymentScripts/deployment.sh DevOpsLabs.API $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
+      inputs:
+        targetType: inline
+        script: |
+          chmod +x ./DeploymentScripts/deployment.sh
+          ./DeploymentScripts/deployment.sh DevOpsLabs.API $ENV_TO_DEPLOY ./DevOpsLabsAPIOutput/
